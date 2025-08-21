@@ -9,8 +9,7 @@ The goal of this project is to keep the manifesto **open, evolving, and collabor
 
 ## Viewing the Manifesto
 
-You can read the manifesto online at:
-👉 [Live Manifesto Page](https://zenglitch.me/)
+You can read the manifesto online at: [Live Manifesto Page](https://zenglitch.me/)
 
 If you want to view it locally:
 
