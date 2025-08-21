@@ -64,6 +64,8 @@ _Curiosity over obsequiousness._
 
 _Connections over assets._
 
+_Compassion over reclusiveness._
+
 _Mindfulness over indifference._
 
 _Emptiness over dogmatism._
