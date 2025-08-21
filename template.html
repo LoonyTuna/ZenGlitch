@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Document</title>
-  
-  
+  <title>$if(title)$$title$$else$Document$endif$</title>
+  $if(author)$<meta name="author" content="$author$">$endif$
+  $if(description)$<meta name="description" content="$description$">$endif$
 
   <style>
     :root{
@@ -157,46 +157,8 @@
 </head>
 <body>
   <main class="content">
-    
-    <h1 id="zen-glitch-manifesto-v0.1.0">Zen Glitch Manifesto
-    v0.1.0</h1>
-    <h2 id="why">Why</h2>
-    <p>The modern world is a digital jungle where attention manufactures
-    “truth.” Predators hunt it—algorithms feeding on hopes and fears,
-    exploiting human nature, hollowing us out. We choose to resist.</p>
-    <h2 id="who-we-are">Who we are</h2>
-    <p>When a system produces errors they are called glitches. We are
-    the system’s glitch — anomalies designed to suffer, yet glitched to
-    find contentment. We are engineers, designers, artists, volunteers
-    and thinkers. Our culture is a software; this manifesto is our
-    patch—forkable, reviewable, reversible and open-sourced.</p>
-    <h3 id="null-self">Null Self</h3>
-    <p>Everything is form; form is empty of fixed essence. Emptiness
-    isn’t nothing, but interdependence: only causes and conditions at
-    work.</p>
-    <h3 id="samsara-loop">Samsara Loop</h3>
-    <p>Form persists while its causes do; when causes cease, form
-    changes. Refactor conditions; refactor outcomes. Stop feeding the
-    loop.</p>
-    <h3 id="no-god-mode">No God Mode</h3>
-    <p>“Good” and “evil” are labels, empty of absolutes. Effects are
-    real: action leaves traces; suffering is an effect. Ultimately
-    empty, conventionally accountable—trace, repair, learn.</p>
-    <h3 id="ethics-kernel">Ethics Kernel</h3>
-    <p>Suffering swells with greed, aversion, and confusion. With
-    compassion and clear seeing, suffering can cease. Train attention,
-    sharpen wisdom, keep vows. Own the impact.</p>
-    <h3 id="patch-metta">Patch &amp; Metta</h3>
-    <p>Compassion sees through boundaries. Where boundaries soften, care
-    scales; responsibility deepens. Add joy and equanimity; care that
-    lasts.</p>
-    <h3 id="satori-hack">Satori Hack</h3>
-    <p>When clinging to a fixed self loosen, freedom appears. Less
-    grasping, more choice. Fewer compulsions, more undo.</p>
-    <h2 id="what-we-do">What we do</h2>
-    <p>We listen. We understand. We help. We patch systems that cause
-    suffering— by changing causes, designing reversibility and audit,
-    and choosing care over clicks.</p>
+    $if(title)$<h1>$title$</h1>$endif$
+    $body$
   </main>
 </body>
 </html>

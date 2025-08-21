@@ -1,4 +1,4 @@
-Zen Glitch Manifesto v0.1.0
+# Zen Glitch Manifesto v0.1.0
 
 ## Why
 
