@@ -21,10 +21,13 @@ reasons, goals and core principles.">
 
       --card-radius: 12px;
 
+      /* -------- Text column width (fluid override per breakpoint) -------- */
+      --text-max: 60%;
+
       /* -------- Artwork: fluid sizing & alignment -------- */
-      /* cap by height; let width follow intrinsic ratio but never exceed this */
-      --art-maxh: clamp(60svh, 70vh, 80lvh);
-      --art-maxw: 48vw;
+      /* smaller on desktop */
+      --art-maxh: clamp(56svh, 64vh, 74lvh);
+      --art-maxw: 42vw;
 
       /* align image to the container’s right edge with a small gutter on small screens */
       --container-right: calc((100vw - var(--page-max)) / 2);
@@ -64,14 +67,13 @@ reasons, goals and core principles.">
       top: 50%;
       transform: translateY(-50%);
       width: auto;                      /* let aspect ratio drive width */
-      max-width: var(--art-maxw);       /* but don’t exceed this */
-      max-height: var(--art-maxh);      /* main size cap */
+      max-width: var(--art-maxw);       /* desktop smaller now */
+      max-height: var(--art-maxh);
       object-fit: contain;
       object-position: center right;
       opacity: 0;
       animation: fadeIn 0.8s ease-out 0.2s forwards;
       z-index: 1;
-      /* lighter by default so it doesn’t feel muddy */
       filter: brightness(0.85) contrast(1.05);
       pointer-events: none; /* click-through */
     }
@@ -111,7 +113,7 @@ reasons, goals and core principles.">
     /* ---------- Typography ---------- */
     h1, h2, h3, p, a {
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-      max-width: 60%;
+      max-width: var(--text-max);
       position: relative;
       z-index: 3;
     }
@@ -130,9 +132,11 @@ reasons, goals and core principles.">
         --page-max: 760px;
         --pad: 22px;
 
-        /* make the image a bit bigger and taller on tablets */
+        /* tablet image sizing (unchanged from prior “amazing” look) */
         --art-maxw: 56vw;
         --art-maxh: clamp(66svh, 74vh, 86lvh);
+
+        --text-max: 55%;
       }
 
       .content::before {
@@ -147,9 +151,8 @@ reasons, goals and core principles.">
         );
       }
 
-      .artwork { filter: brightness(0.90) contrast(1.05); } /* lighter */
+      .artwork { filter: brightness(0.90) contrast(1.05); }
 
-      h1, h2, h3, p, a { max-width: 55%; }
       h1 { font-size: 1.7rem; }
       h2 { font-size: 1.2rem; }
       h3 { font-size: 1.05rem; }
@@ -162,9 +165,11 @@ reasons, goals and core principles.">
         --page-max: 100%;
         --pad: 20px;
 
-        /* let the image breathe on phones */
+        /* keep phone image vibe, but text can run further right */
         --art-maxw: 70vw;
         --art-maxh: clamp(72svh, 80vh, 92lvh);
+
+        --text-max: 78%;
       }
 
       .container {
@@ -174,19 +179,20 @@ reasons, goals and core principles.">
         position: relative;
       }
 
+      /* push the darker part of the gradient farther right for readability */
       .content::before {
         background: linear-gradient(
           to right,
           transparent 0%,
-          transparent 20%,
-          rgba(11,11,11,0.5) 40%,
-          rgba(11,11,11,0.75) 55%,
-          rgba(11,11,11,0.92) 70%,
+          transparent 35%,
+          rgba(11,11,11,0.45) 60%,
+          rgba(11,11,11,0.75) 75%,
+          rgba(11,11,11,0.92) 88%,
           var(--bg) 100%
         );
       }
 
-      .artwork { filter: brightness(0.98) contrast(1.02); } /* much lighter on phones */
+      .artwork { filter: brightness(0.98) contrast(1.02); }
 
       .content {
         padding:
@@ -197,7 +203,6 @@ reasons, goals and core principles.">
         min-height: 100vh;
       }
 
-      h1, h2, h3, p, a { max-width: 50%; }
       h1 { font-size: 1.35rem; margin-bottom: 1rem; }
       h2 { font-size: 1.07rem; }
       h3 { font-size: 1rem; }
