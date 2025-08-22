@@ -9,28 +9,28 @@
 reasons, goals and core principles.">
 
   <style>
-    :root{
+    :root {
       --page-max: 820px;
       --pad: 28px;
-
-      --bg: #0b0b0b;    /* page background */
-      --ink: #f3f3f3;   /* body text */
+      
+      --bg: #0b0b0b;
+      --ink: #f3f3f3;
       --muted: #b8b8b8;
-      --card: #111;     /* card base */
+      --card: #111;
       --link: #8ecbff;
-
+      
       --card-radius: 12px;
-
-      /* Artwork sizing */
-      --img-min: 330px;
-      --img-ide: 48vw;
-      --img-max: 560px;
     }
 
     /* ---------- Base ---------- */
-    html, body{
-      height: 100%;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
       background: var(--bg);
       color: var(--ink);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
@@ -39,180 +39,319 @@ reasons, goals and core principles.">
       text-rendering: optimizeLegibility;
     }
 
-    .content{
-      box-sizing: border-box;
+    /* ---------- Container ---------- */
+    .container {
       max-width: var(--page-max);
       margin: 20px auto;
-      padding:
-        max(var(--pad), env(safe-area-inset-top))
-        max(var(--pad), env(safe-area-inset-right))
-        max(var(--pad), env(safe-area-inset-bottom))
-        max(var(--pad), env(safe-area-inset-left));
+      position: relative;
       border-radius: var(--card-radius);
-
-      /* Layer order:
-         1) subtle dark gradient for readability
-         2) artwork
-         3) dark card base */
-      background:
-        linear-gradient(
-          to left,
-          rgba(16,16,16,0.15) 38%,
-          rgba(16,16,16,0.35) 62%,
-          rgba(16,16,16,0.55) 76%,
-          rgba(16,16,16,0.75) 100%
-        ),
-        url("images/logo.png"),
-        var(--card);
-      background-position:
-        right center,
-        right center,
-        left top;
-      background-size:
-        auto,
-        clamp(var(--img-min), var(--img-ide), var(--img-max)) auto,
-        auto;
-
-      background-repeat: no-repeat, no-repeat, no-repeat;
-
+      background: var(--card);
       box-shadow: 0 2px 22px rgba(0,0,0,.35);
-      color: var(--ink);
+      overflow: hidden;
+      min-height: 500px;
+    }
+
+    /* ---------- Image ---------- */
+    .artwork {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: auto;
+      width: 50%;
+      max-height: 90%;
+      object-fit: contain;
+      object-position: center right;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.2s forwards;
+      z-index: 1;
+      filter: brightness(0.9);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Gradient overlay for text readability */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to right,
+        var(--card) 0%,
+        rgba(17,17,17,0.95) 30%,
+        rgba(17,17,17,0.85) 45%,
+        rgba(17,17,17,0.5) 60%,
+        rgba(17,17,17,0.2) 75%,
+        transparent 100%
+      );
+      z-index: 2;
+    }
+
+    /* ---------- Content ---------- */
+    .content {
+      position: relative;
+      padding:
+        max(calc(var(--pad) * 1.5), env(safe-area-inset-top))
+        max(var(--pad), env(safe-area-inset-right))
+        max(calc(var(--pad) * 1.5), env(safe-area-inset-bottom))
+        max(var(--pad), env(safe-area-inset-left));
+      min-height: 500px;
+      z-index: 3;
     }
 
     /* ---------- Typography ---------- */
-    h1, h2, h3, p, a { text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
-    h1,h2,h3{ line-height: 1.25; margin: 0 0 .8em }
-    h1{ font-size: 2rem; font-weight: 750; margin-bottom: 1.15em }
-    h2{ font-size: 1.25rem; font-weight: 700; margin-top: 1.8em }
-    h3{ font-size: 1.1rem;  font-weight: 700; margin-top: 1.4em }
-    p { margin: 0 0 1.1em; font-size: 1.05rem }
-    a { color: var(--link); }
+    h1, h2, h3, p, a { 
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      max-width: 65%;  /* Keep text away from image */
+    }
+
+    h1, h2, h3 { 
+      line-height: 1.25; 
+      margin: 0 0 .8em;
+    }
+
+    h1 { 
+      font-size: 2rem; 
+      font-weight: 750; 
+      margin-bottom: 1.15em;
+    }
+
+    h2 { 
+      font-size: 1.25rem; 
+      font-weight: 700; 
+      margin-top: 1.8em;
+    }
+
+    h3 { 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      margin-top: 1.4em;
+    }
+
+    p { 
+      margin: 0 0 1.1em; 
+      font-size: 1.05rem;
+    }
+
+    a { 
+      color: var(--link);
+    }
 
     /* ---------- Tablet ---------- */
-    @media (max-width: 900px){
-      :root{ --page-max: 760px; --pad: 22px; --img-max: 500px; }
-      .content{
-        background:
-          linear-gradient(
-            to left,
-            rgba(16,16,16,0.12) 34%,
-            rgba(16,16,16,0.32) 58%,
-            rgba(16,16,16,0.55) 76%,
-            rgba(16,16,16,0.75) 100%
-          ),
-          url("images/logo.png"),
-          var(--card);
-        background-position: right 42%, right 42%, left top;
-        background-size:
-          auto,
-          clamp(210px, 52vw, var(--img-max)) auto,
-          auto;
-        background-repeat: no-repeat, no-repeat, no-repeat;
+    @media (max-width: 900px) {
+      :root { 
+        --page-max: 760px; 
+        --pad: 22px;
       }
-      h1{ font-size: 1.7rem }
-      h2{ font-size: 1.2rem }
-      h3{ font-size: 1.05rem }
-      p { font-size: 1rem }
+
+      .artwork {
+        width: 45%;
+        max-height: 85%;
+      }
+
+      .container::before {
+        background: linear-gradient(
+          to right,
+          var(--card) 0%,
+          rgba(17,17,17,0.96) 35%,
+          rgba(17,17,17,0.85) 50%,
+          rgba(17,17,17,0.6) 65%,
+          rgba(17,17,17,0.3) 80%,
+          transparent 100%
+        );
+      }
+
+      h1, h2, h3, p, a { 
+        max-width: 55%;
+      }
+
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.2rem; }
+      h3 { font-size: 1.05rem; }
+      p { font-size: 1rem; }
     }
 
     /* ---------- Phone ---------- */
-    @media (max-width: 600px){
-      :root{ --page-max: 100%; --pad: 16px; --img-max: 420px; }
-      .content{
+    @media (max-width: 600px) {
+      :root { 
+        --page-max: 100%; 
+        --pad: 20px;
+      }
+
+      .container {
         margin: 10px;
         border-radius: 10px;
-        background:
-          linear-gradient(
-            to left,
-            rgba(16,16,16,0.10) 30%,
-            rgba(16,16,16,0.28) 54%,
-            rgba(16,16,16,0.52) 72%,
-            rgba(16,16,16,0.72) 100%
-          ),
-          url("images/logo.png"),
-          var(--card);
-        background-position: right 45%, right 45%, left top;
-        background-size:
-          auto,
-          clamp(200px, 62vw, var(--img-max)) auto,
-          auto;
-        background-repeat: no-repeat, no-repeat, no-repeat;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
-      h1{ font-size: 1.35rem; margin-bottom: 1rem }
-      h2{ font-size: 1.07rem }
-      h3{ font-size: 1rem }
-      p { font-size: .98rem }
+
+      .artwork {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        max-width: 100%;
+        right: auto;
+        top: auto;
+        object-position: center center;
+      }
+
+      .container::before {
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(17,17,17,0.4) 50%,
+          rgba(17,17,17,0.8) 80%,
+          var(--card) 100%
+        );
+      }
+
+      .content {
+        flex: 1;
+        padding-top: 0;
+        margin-top: -60px;  /* Overlap with image fade */
+      }
+
+      h1, h2, h3, p, a { 
+        max-width: 100%;
+      }
+
+      h1 { 
+        font-size: 1.35rem; 
+        margin-bottom: 1rem;
+      }
+      h2 { font-size: 1.07rem; }
+      h3 { font-size: 1rem; }
+      p { font-size: .98rem; }
     }
 
-    @media print{
-      body{ background: #000; color: #fff }
-      .content{
-        background: #000 !important;
+    /* ---------- Landscape phones ---------- */
+    @media (max-width: 900px) and (orientation: landscape) {
+      .container {
+        min-height: auto;
+      }
+
+      .artwork {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: auto;
+        width: 40%;
+        max-height: 80%;
+      }
+
+      .content {
+        min-height: 60vh;
+      }
+
+      h1, h2, h3, p, a { 
+        max-width: 55%;
+      }
+    }
+
+    /* ---------- Print ---------- */
+    @media print {
+      body { 
+        background: #fff; 
+        color: #000;
+      }
+
+      .container {
+        background: #fff !important;
         box-shadow: none;
         margin: 0;
         max-width: 100%;
         border-radius: 0;
-        padding: 0;
+      }
+
+      .artwork {
+        display: none;
+      }
+
+      .container::before {
+        display: none;
+      }
+
+      h1, h2, h3, p, a { 
+        max-width: 100%;
+        text-shadow: none;
+      }
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .artwork {
+        animation: none;
+        opacity: 1;
       }
     }
   </style>
 </head>
 <body>
-  <main class="content">
-    <h1>ZenGlitch Manifesto v0.1.2</h1>
-    <h2 id="why">Why</h2>
-    <p>The modern world is a digital jungle where attention manufactures
-    “truth.” Predators hunt it—algorithms feeding on hopes and fears,
-    exploiting human nature, hollowing us out.</p>
-    <p>We choose to resist.</p>
-    <h2 id="who-we-are">Who we are</h2>
-    <p>When a system produces errors they are called glitches. We are
-    the system’s glitch — anomalies designed to suffer, yet glitched to
-    find contentment. We are engineers, designers, artists, volunteers
-    and thinkers. Our culture is software; this manifesto is our
-    patch—forkable, reviewable, reversible and open-sourced.</p>
-    <h4 id="null-self">Null Self</h4>
-    <p>Everything is form; form is empty of fixed essence. Emptiness
-    isn’t nothing, but interdependence: only causes and conditions at
-    work.</p>
-    <h4 id="samsara-loop">Samsara Loop</h4>
-    <p>Form persists while its causes do; when causes cease, form
-    changes. Refactor conditions; refactor outcomes. Stop feeding the
-    loop.</p>
-    <h4 id="no-god-mode">No God Mode</h4>
-    <p>“Good” and “evil” are labels, empty of absolutes. Effects are
-    real: action leaves traces; suffering is an effect. Ultimately
-    empty, conventionally accountable—trace, repair, learn.</p>
-    <h4 id="ethics-kernel">Ethics Kernel</h4>
-    <p>Suffering swells with greed, aversion, and confusion. With
-    compassion and clear seeing, suffering can cease. Train attention,
-    sharpen wisdom, keep vows. Own the impact.</p>
-    <h4 id="patch-metta">Patch &amp; Metta</h4>
-    <p>Compassion sees through boundaries. Where boundaries soften, care
-    scales; responsibility deepens. Add joy and equanimity; care that
-    lasts.</p>
-    <h4 id="satori-hack">Satori Hack</h4>
-    <p>When clinging to a fixed self loosen, freedom appears. Less
-    grasping, more choice. Fewer compulsions, more undo.</p>
-    <h2 id="what-we-do">What we do</h2>
-    <p>We listen. We understand. We help. We teach. We patch systems
-    that cause suffering— by changing causes, designing patches, and
-    choosing <em>care over clicks.</em></p>
-    <p><em>Personalities over titles.</em></p>
-    <p><em>Sincerity over rationality.</em></p>
-    <p><em>Responsibility over bureaucracy.</em></p>
-    <p><em>Responsiveness over strategizing.</em></p>
-    <p><em>Knowledge over conformism.</em></p>
-    <p><em>Curiosity over obsequiousness.</em></p>
-    <p><em>Connections over assets.</em></p>
-    <p><em>Compassion over reclusiveness.</em></p>
-    <p><em>Mindfulness over indifference.</em></p>
-    <p><em>Emptiness over dogmatism.</em></p>
-    <h2 id="contributing">Contributing</h2>
-    <p>This manifesto is open to changes and modifications. Feel free to
-    propose any ideas, follow the contributing guideline.</p>
-    <p><a href="https://github.com/LoonyTuna/ZenGlitch">Link to GitHub
-    repository</a></p>
-  </main>
+  <div class="container">
+    <img class="artwork" src="images/logo.png" alt="" loading="lazy">
+    <main class="content">
+      <h1>ZenGlitch Manifesto v0.1.2</h1>
+      <h2 id="why">Why</h2>
+      <p>The modern world is a digital jungle where attention
+      manufactures “truth.” Predators hunt it—algorithms feeding on
+      hopes and fears, exploiting human nature, hollowing us out.</p>
+      <p>We choose to resist.</p>
+      <h2 id="who-we-are">Who we are</h2>
+      <p>When a system produces errors they are called glitches. We are
+      the system’s glitch — anomalies designed to suffer, yet glitched
+      to find contentment. We are engineers, designers, artists,
+      volunteers and thinkers. Our culture is software; this manifesto
+      is our patch—forkable, reviewable, reversible and
+      open-sourced.</p>
+      <h4 id="null-self">Null Self</h4>
+      <p>Everything is form; form is empty of fixed essence. Emptiness
+      isn’t nothing, but interdependence: only causes and conditions at
+      work.</p>
+      <h4 id="samsara-loop">Samsara Loop</h4>
+      <p>Form persists while its causes do; when causes cease, form
+      changes. Refactor conditions; refactor outcomes. Stop feeding the
+      loop.</p>
+      <h4 id="no-god-mode">No God Mode</h4>
+      <p>“Good” and “evil” are labels, empty of absolutes. Effects are
+      real: action leaves traces; suffering is an effect. Ultimately
+      empty, conventionally accountable—trace, repair, learn.</p>
+      <h4 id="ethics-kernel">Ethics Kernel</h4>
+      <p>Suffering swells with greed, aversion, and confusion. With
+      compassion and clear seeing, suffering can cease. Train attention,
+      sharpen wisdom, keep vows. Own the impact.</p>
+      <h4 id="patch-metta">Patch &amp; Metta</h4>
+      <p>Compassion sees through boundaries. Where boundaries soften,
+      care scales; responsibility deepens. Add joy and equanimity; care
+      that lasts.</p>
+      <h4 id="satori-hack">Satori Hack</h4>
+      <p>When clinging to a fixed self loosen, freedom appears. Less
+      grasping, more choice. Fewer compulsions, more undo.</p>
+      <h2 id="what-we-do">What we do</h2>
+      <p>We listen. We understand. We help. We teach. We patch systems
+      that cause suffering— by changing causes, designing patches, and
+      choosing <em>care over clicks.</em></p>
+      <p><em>Personalities over titles.</em></p>
+      <p><em>Sincerity over rationality.</em></p>
+      <p><em>Responsibility over bureaucracy.</em></p>
+      <p><em>Responsiveness over strategizing.</em></p>
+      <p><em>Knowledge over conformism.</em></p>
+      <p><em>Curiosity over obsequiousness.</em></p>
+      <p><em>Connections over assets.</em></p>
+      <p><em>Compassion over reclusiveness.</em></p>
+      <p><em>Mindfulness over indifference.</em></p>
+      <p><em>Emptiness over dogmatism.</em></p>
+      <h2 id="contributing">Contributing</h2>
+      <p>This manifesto is open to changes and modifications. Feel free
+      to propose any ideas, follow the contributing guideline.</p>
+      <p><a href="https://github.com/LoonyTuna/ZenGlitch">Link to GitHub
+      repository</a></p>
+    </main>
+  </div>
 </body>
 </html>
