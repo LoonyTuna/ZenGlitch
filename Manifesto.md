@@ -1,5 +1,5 @@
 ---
-title: "ZenGlitch Manifesto v0.1.2"
+title: "ZenGlitch Manifesto v0.1.3"
 author: "ZenGlitch community"
 description: "Manifesto of ZenGlitch community on reasons, goals and core principles."
 ---
@@ -68,7 +68,7 @@ _Knowledge over conformism._
 
 _Curiosity over obsequiousness._
 
-_Heuristic over idealism._
+_Heuristics over perfectionism._
 
 _Connections over assets._
 
