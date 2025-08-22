@@ -68,6 +68,8 @@ _Knowledge over conformism._
 
 _Curiosity over obsequiousness._
 
+_Heuristic over idealism._
+
 _Connections over assets._
 
 _Compassion over reclusiveness._

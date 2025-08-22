@@ -55,7 +55,7 @@ reasons, goals and core principles.">
     /* ---------- Image ---------- */
     .artwork {
       position: absolute;
-      right: -10%;
+      right: -15%;
       top: 50%;
       transform: translateY(-50%);
       height: auto;
@@ -191,44 +191,49 @@ reasons, goals and core principles.">
         margin: 10px;
         border-radius: 10px;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden; /* Keep overflow hidden on mobile */
+        position: relative;
+        /* Remove flex layout to keep desktop-like positioning */
       }
 
       .artwork {
-        position: relative;
-        width: 100%;
-        height: 45vh;
-        max-width: 100%;
-        max-height: 45vh;
-        right: auto;
-        top: auto;
-        transform: none;
-        object-fit: cover;
-        object-position: center bottom; /* Show bottom part of circle */
+        position: absolute;
+        right: -5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 55%;
+        height: auto;
+        max-width: 55%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center right;
         filter: brightness(0.9) contrast(1.05);
       }
 
       .container::before {
         background: linear-gradient(
-          to bottom,
-          transparent 0%,
-          rgba(17,17,17,0.3) 40%,
-          rgba(17,17,17,0.7) 70%,
-          rgba(17,17,17,0.9) 85%,
-          var(--card) 95%
+          to right,
+          var(--card) 0%,
+          rgba(17,17,17,0.96) 25%,
+          rgba(17,17,17,0.88) 40%,
+          rgba(17,17,17,0.7) 55%,
+          rgba(17,17,17,0.4) 70%,
+          transparent 100%
         );
+        border-radius: 10px;
+        overflow: hidden;
       }
 
       .content {
-        flex: 1;
-        padding-top: var(--pad);
-        margin-top: -80px;  /* Stronger overlap with image fade */
+        padding:
+          max(var(--pad), env(safe-area-inset-top))
+          max(var(--pad), env(safe-area-inset-right))
+          max(var(--pad), env(safe-area-inset-bottom))
+          max(var(--pad), env(safe-area-inset-left));
+        min-height: 100vh;
       }
 
       h1, h2, h3, p, a { 
-        max-width: 100%;
+        max-width: 50%;  /* Keep text on left side */
       }
 
       h1 { 
@@ -353,6 +358,7 @@ reasons, goals and core principles.">
       <p><em>Responsiveness over strategizing.</em></p>
       <p><em>Knowledge over conformism.</em></p>
       <p><em>Curiosity over obsequiousness.</em></p>
+      <p><em>Heuristic over idealism.</em></p>
       <p><em>Connections over assets.</em></p>
       <p><em>Compassion over reclusiveness.</em></p>
       <p><em>Mindfulness over indifference.</em></p>
