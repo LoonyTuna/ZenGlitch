@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>ZenGlitch Manifesto v0.1.2</title>
+  <title>ZenGlitch Manifesto v0.1.3</title>
   <meta name="author" content="ZenGlitch community">
   <meta name="description" content="Manifesto of ZenGlitch community on
 reasons, goals and core principles.">
@@ -206,7 +206,7 @@ reasons, goals and core principles.">
         max-height: 90%;
         object-fit: contain;
         object-position: center right;
-        filter: brightness(0.9) contrast(1.05);
+        filter: brightness(0.85) contrast(1.1);
       }
 
       .container::before {
@@ -229,12 +229,12 @@ reasons, goals and core principles.">
           max(var(--pad), env(safe-area-inset-top))
           max(var(--pad), env(safe-area-inset-right))
           max(var(--pad), env(safe-area-inset-bottom))
-          max(var(--pad), env(safe-area-inset-left));
+          max(calc(var(--pad) * 2), env(safe-area-inset-left)); /* Double left padding */
         min-height: 100vh;
       }
 
       h1, h2, h3, p, a { 
-        max-width: 55%;  /* Keep text on left side, wider for better readability */
+        max-width: 65%;  /* Allow text to extend more over the faded image */
       }
 
       h1 { 
@@ -313,7 +313,7 @@ reasons, goals and core principles.">
   <div class="container">
     <img class="artwork" src="images/logo.png" alt="" loading="lazy">
     <main class="content">
-      <h1>ZenGlitch Manifesto v0.1.2</h1>
+      <h1>ZenGlitch Manifesto v0.1.3</h1>
       <h2 id="why">Why</h2>
       <p>The modern world is a digital jungle where attention
       manufactures “truth.” Predators hunt it—algorithms feeding on

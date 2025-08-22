@@ -1,5 +1,6 @@
 ---
-title: "ZenGlitch Manifesto v0.1.3"
+title: "ZenGlitch Manifesto"
+version: "v0.1.3"
 author: "ZenGlitch community"
 description: "Manifesto of ZenGlitch community on reasons, goals and core principles."
 ---

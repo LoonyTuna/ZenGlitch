@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>$if(title)$$title$$else$Document$endif$</title>
+  <title>$if(title)$$title$$if(version)$ $version$$endif$$else$Document$endif$</title>
   $if(author)$<meta name="author" content="$author$">$endif$
   $if(description)$<meta name="description" content="$description$">$endif$
 
@@ -205,7 +205,7 @@
         max-height: 90%;
         object-fit: contain;
         object-position: center right;
-        filter: brightness(0.9) contrast(1.05);
+        filter: brightness(0.85) contrast(1.1);
       }
 
       .container::before {
@@ -228,12 +228,12 @@
           max(var(--pad), env(safe-area-inset-top))
           max(var(--pad), env(safe-area-inset-right))
           max(var(--pad), env(safe-area-inset-bottom))
-          max(var(--pad), env(safe-area-inset-left));
+          max(calc(var(--pad) * 2), env(safe-area-inset-left)); /* Double left padding */
         min-height: 100vh;
       }
 
       h1, h2, h3, p, a { 
-        max-width: 55%;  /* Keep text on left side, wider for better readability */
+        max-width: 65%;  /* Allow text to extend more over the faded image */
       }
 
       h1 { 
@@ -312,7 +312,7 @@
   <div class="container">
     <img class="artwork" src="images/logo.png" alt="" loading="lazy">
     <main class="content">
-      $if(title)$<h1>$title$</h1>$endif$
+      $if(title)$<h1>$title$$if(version)$ $version$$endif$</h1>$endif$
       $body$
     </main>
   </div>
