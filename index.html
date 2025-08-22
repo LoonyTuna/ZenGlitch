@@ -21,21 +21,18 @@ reasons, goals and core principles.">
 
       --card-radius: 12px;
 
-      /* ---------- Fluid artwork sizing (relative, no breakpoints) ---------- */
-      /* Width scales smoothly across viewports */
-      --art-w: clamp(28vw, 36vw, 45vw);
-      /* Height cap stays around your preferred 60vh but breathes a bit */
-      --art-maxh: clamp(52svh, 62vh, 72lvh);
-      /* Keep a small gutter on small screens, align to container on large */
-      --art-right: max(2vw, calc((100vw - var(--page-max)) / 2));
+      /* -------- Artwork: fluid sizing & alignment -------- */
+      /* cap by height; let width follow intrinsic ratio but never exceed this */
+      --art-maxh: clamp(60svh, 70vh, 80lvh);
+      --art-maxw: 48vw;
+
+      /* align image to the container’s right edge with a small gutter on small screens */
+      --container-right: calc((100vw - var(--page-max)) / 2);
+      --art-right: max(2vw, var(--pad), env(safe-area-inset-right), var(--container-right));
     }
 
     /* ---------- Base ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
       min-height: 100%;
@@ -62,34 +59,30 @@ reasons, goals and core principles.">
     /* ---------- Image ---------- */
     .artwork {
       position: fixed;
-      left: auto;                        /* right-aligned only */
-      right: var(--art-right);           /* aligns to container on wide, adds gutter on small */
+      left: auto;                       /* anchor only on the right */
+      right: var(--art-right);          /* aligns with container on wide screens */
       top: 50%;
       transform: translateY(-50%);
-      height: auto;
-      width: var(--art-w);               /* fluid width */
-      max-height: var(--art-maxh);       /* fluid height cap */
+      width: auto;                      /* let aspect ratio drive width */
+      max-width: var(--art-maxw);       /* but don’t exceed this */
+      max-height: var(--art-maxh);      /* main size cap */
       object-fit: contain;
       object-position: center right;
       opacity: 0;
       animation: fadeIn 0.8s ease-out 0.2s forwards;
       z-index: 1;
-      filter: brightness(0.65) contrast(1.1);
-      pointer-events: none; /* Allow clicking through the image */
+      /* lighter by default so it doesn’t feel muddy */
+      filter: brightness(0.85) contrast(1.05);
+      pointer-events: none; /* click-through */
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     /* Gradient overlay for text readability - applied to content area */
     .content::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: linear-gradient(
         to right,
         transparent 0%,
@@ -123,43 +116,23 @@ reasons, goals and core principles.">
       z-index: 3;
     }
 
-    h1, h2, h3 {
-      line-height: 1.25;
-      margin: 0 0 .8em;
-    }
+    h1, h2, h3 { line-height: 1.25; margin: 0 0 .8em; }
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 750;
-      margin-bottom: 1.15em;
-    }
-
-    h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-top: 1.8em;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-top: 1.4em;
-    }
-
-    p {
-      margin: 0 0 1.1em;
-      font-size: 1.05rem;
-    }
-
-    a {
-      color: var(--link);
-    }
+    h1 { font-size: 2rem; font-weight: 750; margin-bottom: 1.15em; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin-top: 1.8em; }
+    h3 { font-size: 1.1rem; font-weight: 700; margin-top: 1.4em; }
+    p  { margin: 0 0 1.1em; font-size: 1.05rem; }
+    a  { color: var(--link); }
 
     /* ---------- Tablet ---------- */
     @media (max-width: 900px) {
       :root {
         --page-max: 760px;
         --pad: 22px;
+
+        /* make the image a bit bigger and taller on tablets */
+        --art-maxw: 56vw;
+        --art-maxh: clamp(66svh, 74vh, 86lvh);
       }
 
       .content::before {
@@ -174,10 +147,9 @@ reasons, goals and core principles.">
         );
       }
 
-      h1, h2, h3, p, a {
-        max-width: 55%;
-      }
+      .artwork { filter: brightness(0.90) contrast(1.05); } /* lighter */
 
+      h1, h2, h3, p, a { max-width: 55%; }
       h1 { font-size: 1.7rem; }
       h2 { font-size: 1.2rem; }
       h3 { font-size: 1.05rem; }
@@ -189,6 +161,10 @@ reasons, goals and core principles.">
       :root {
         --page-max: 100%;
         --pad: 20px;
+
+        /* let the image breathe on phones */
+        --art-maxw: 70vw;
+        --art-maxh: clamp(72svh, 80vh, 92lvh);
       }
 
       .container {
@@ -210,6 +186,8 @@ reasons, goals and core principles.">
         );
       }
 
+      .artwork { filter: brightness(0.98) contrast(1.02); } /* much lighter on phones */
+
       .content {
         padding:
           max(var(--pad), env(safe-area-inset-top))
@@ -219,14 +197,8 @@ reasons, goals and core principles.">
         min-height: 100vh;
       }
 
-      h1, h2, h3, p, a {
-        max-width: 50%;
-      }
-
-      h1 {
-        font-size: 1.35rem;
-        margin-bottom: 1rem;
-      }
+      h1, h2, h3, p, a { max-width: 50%; }
+      h1 { font-size: 1.35rem; margin-bottom: 1rem; }
       h2 { font-size: 1.07rem; }
       h3 { font-size: 1rem; }
       p  { font-size: .98rem; }
@@ -236,41 +208,21 @@ reasons, goals and core principles.">
     @media (max-width: 900px) and (orientation: landscape) {
       .container { min-height: auto; }
       .content   { min-height: 60vh; }
-
-      /* No .artwork overrides here; fluid vars already handle size */
+      :root { --art-maxw: 60vw; --art-maxh: 90svh; }
     }
 
     /* ---------- Print ---------- */
     @media print {
-      body {
-        background: #fff;
-        color: #000;
-      }
-
-      .container {
-        background: #fff !important;
-        box-shadow: none;
-        margin: 0;
-        max-width: 100%;
-        border-radius: 0;
-      }
-
+      body { background: #fff; color: #000; }
+      .container { background: #fff !important; box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
       .artwork { display: none; }
-
       .content::before { display: none; }
-
-      h1, h2, h3, p, a {
-        max-width: 100%;
-        text-shadow: none;
-      }
+      h1, h2, h3, p, a { max-width: 100%; text-shadow: none; }
     }
 
     /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
-      .artwork {
-        animation: none;
-        opacity: 1;
-      }
+      .artwork { animation: none; opacity: 1; }
     }
   </style>
 </head>
