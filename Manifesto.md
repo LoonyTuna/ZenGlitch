@@ -69,7 +69,7 @@ _Knowledge over conformism._
 
 _Curiosity over obsequiousness._
 
-_Heuristics over perfectionism._
+_Heuristics over idealism._
 
 _Connections over assets._
 
