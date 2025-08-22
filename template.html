@@ -53,12 +53,13 @@
     /* ---------- Image ---------- */
     .artwork {
       position: fixed;
+      left: var(--pad), env(safe-area-inset-left);
       right: calc((100vw - var(--page-max)) / 2); /* align to container’s right */
       top: 50%;
       transform: translateY(-50%);
       height: auto;
-      width: 35%;
-      max-height: 80vh;
+      width: auto;
+      max-height: 60vh;
       object-fit: contain;
       object-position: center right;
       opacity: 0;
