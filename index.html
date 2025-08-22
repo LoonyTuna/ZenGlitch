@@ -12,14 +12,22 @@ reasons, goals and core principles.">
     :root {
       --page-max: 820px;
       --pad: 28px;
-      
+
       --bg: #0b0b0b;
       --ink: #f3f3f3;
       --muted: #b8b8b8;
       --card: #111;
       --link: #8ecbff;
-      
+
       --card-radius: 12px;
+
+      /* ---------- Fluid artwork sizing (relative, no breakpoints) ---------- */
+      /* Width scales smoothly across viewports */
+      --art-w: clamp(28vw, 36vw, 45vw);
+      /* Height cap stays around your preferred 60vh but breathes a bit */
+      --art-maxh: clamp(52svh, 62vh, 72lvh);
+      /* Keep a small gutter on small screens, align to container on large */
+      --art-right: max(2vw, calc((100vw - var(--page-max)) / 2));
     }
 
     /* ---------- Base ---------- */
@@ -54,13 +62,13 @@ reasons, goals and core principles.">
     /* ---------- Image ---------- */
     .artwork {
       position: fixed;
-      left: var(--pad), env(safe-area-inset-left);
-      right: calc((100vw - var(--page-max)) / 2); /* align to container’s right */
+      left: auto;                        /* right-aligned only */
+      right: var(--art-right);           /* aligns to container on wide, adds gutter on small */
       top: 50%;
       transform: translateY(-50%);
       height: auto;
-      width: auto;
-      max-height: 60vh;
+      width: var(--art-w);               /* fluid width */
+      max-height: var(--art-maxh);       /* fluid height cap */
       object-fit: contain;
       object-position: center right;
       opacity: 0;
@@ -68,30 +76,6 @@ reasons, goals and core principles.">
       z-index: 1;
       filter: brightness(0.65) contrast(1.1);
       pointer-events: none; /* Allow clicking through the image */
-    }
-
-    /* Adjust image size for different screen sizes */
-    @media (max-width: 1200px) {
-      .artwork {
-        width: 40%;
-        right: 5%;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .artwork {
-        width: 35%;
-        right: 3%;
-        max-height: 70vh;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .artwork {
-        width: 45%;
-        right: 2%;
-        max-height: 60vh;
-      }
     }
 
     @keyframes fadeIn {
@@ -132,49 +116,49 @@ reasons, goals and core principles.">
     }
 
     /* ---------- Typography ---------- */
-    h1, h2, h3, p, a { 
+    h1, h2, h3, p, a {
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
       max-width: 60%;
       position: relative;
       z-index: 3;
     }
 
-    h1, h2, h3 { 
-      line-height: 1.25; 
+    h1, h2, h3 {
+      line-height: 1.25;
       margin: 0 0 .8em;
     }
 
-    h1 { 
-      font-size: 2rem; 
-      font-weight: 750; 
+    h1 {
+      font-size: 2rem;
+      font-weight: 750;
       margin-bottom: 1.15em;
     }
 
-    h2 { 
-      font-size: 1.25rem; 
-      font-weight: 700; 
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
       margin-top: 1.8em;
     }
 
-    h3 { 
-      font-size: 1.1rem; 
-      font-weight: 700; 
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
       margin-top: 1.4em;
     }
 
-    p { 
-      margin: 0 0 1.1em; 
+    p {
+      margin: 0 0 1.1em;
       font-size: 1.05rem;
     }
 
-    a { 
+    a {
       color: var(--link);
     }
 
     /* ---------- Tablet ---------- */
     @media (max-width: 900px) {
-      :root { 
-        --page-max: 760px; 
+      :root {
+        --page-max: 760px;
         --pad: 22px;
       }
 
@@ -190,20 +174,20 @@ reasons, goals and core principles.">
         );
       }
 
-      h1, h2, h3, p, a { 
+      h1, h2, h3, p, a {
         max-width: 55%;
       }
 
       h1 { font-size: 1.7rem; }
       h2 { font-size: 1.2rem; }
       h3 { font-size: 1.05rem; }
-      p { font-size: 1rem; }
+      p  { font-size: 1rem; }
     }
 
     /* ---------- Phone ---------- */
     @media (max-width: 600px) {
-      :root { 
-        --page-max: 100%; 
+      :root {
+        --page-max: 100%;
         --pad: 20px;
       }
 
@@ -235,43 +219,31 @@ reasons, goals and core principles.">
         min-height: 100vh;
       }
 
-      h1, h2, h3, p, a { 
+      h1, h2, h3, p, a {
         max-width: 50%;
       }
 
-      h1 { 
-        font-size: 1.35rem; 
+      h1 {
+        font-size: 1.35rem;
         margin-bottom: 1rem;
       }
       h2 { font-size: 1.07rem; }
       h3 { font-size: 1rem; }
-      p { font-size: .98rem; }
+      p  { font-size: .98rem; }
     }
 
     /* ---------- Landscape phones ---------- */
     @media (max-width: 900px) and (orientation: landscape) {
-      .container {
-        min-height: auto;
-      }
+      .container { min-height: auto; }
+      .content   { min-height: 60vh; }
 
-      .artwork {
-        max-height: 90vh;
-        width: 30%;
-      }
-
-      .content {
-        min-height: 60vh;
-      }
-
-      h1, h2, h3, p, a { 
-        max-width: 55%;
-      }
+      /* No .artwork overrides here; fluid vars already handle size */
     }
 
     /* ---------- Print ---------- */
     @media print {
-      body { 
-        background: #fff; 
+      body {
+        background: #fff;
         color: #000;
       }
 
@@ -283,15 +255,11 @@ reasons, goals and core principles.">
         border-radius: 0;
       }
 
-      .artwork {
-        display: none;
-      }
+      .artwork { display: none; }
 
-      .content::before {
-        display: none;
-      }
+      .content::before { display: none; }
 
-      h1, h2, h3, p, a { 
+      h1, h2, h3, p, a {
         max-width: 100%;
         text-shadow: none;
       }
