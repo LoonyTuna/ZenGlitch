@@ -1,11 +1,15 @@
-# Zen Glitch Manifesto v0.1.1
+---
+title: "ZenGlitch Manifesto v0.1.2"
+author: "ZenGlitch community"
+description: "Manifesto of ZenGlitch community on reasons, goals and core principles."
+---
 
 ## Why
 
 The modern world is a digital jungle where attention manufactures “truth.”
 Predators hunt it—algorithms feeding on hopes and fears, exploiting human nature, hollowing us out.
 
-**We choose to resist.**
+We choose to resist.
 
 ## Who we are
 
@@ -48,15 +52,17 @@ Less grasping, more choice. Fewer compulsions, more undo.
 
 ## What we do
 
-We listen. We understand. We help.
+We listen. We understand. We help. We teach.
 We patch systems that cause suffering—
-by changing causes, designing reversibility and audit, and choosing care over clicks.
+by changing causes, designing patches, and choosing _care over clicks._
 
 _Personalities over titles._
 
 _Sincerity over rationality._
 
 _Responsibility over bureaucracy._
+
+_Responsiveness over strategizing._
 
 _Knowledge over conformism._
 
