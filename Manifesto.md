@@ -13,13 +13,15 @@ Their power lies in our apathy, in the numb pain we accept when we give ourselve
 
 **We choose to resist.**
 
+---
+
 ## Who we are
 
 When a system results in an error it is called "glitch".
 We are the system’s glitch — 
 anomalies designed to suffer in an endless cycle of craving, yet broken enough to find contentment.
 We are engineers, designers, artists, volunteers and thinkers.
-Our culture is a software; this manifesto is our open-sourced patch.
+Our culture is a software; this manifesto is our open-sourced patch:
 
 #### Null Self
 
@@ -27,35 +29,35 @@ Everything is a form; the form is empty of self.
 Emptiness is not nothing, but interdependence — 
 causes and conditions at work.
 
-See the causes and conditions, not form.
+_See the causes and conditions, not form._
 
 #### Samsara Loop
 
 Any phenomena persists while conditions do; 
 when conditions cease, its form changes.
 
-Learn to use the power without effort — break the loop.
+_Learn to use the power without effort — break the loop._
 
 #### No God Mode
 
 “Good” and “evil” are labels, empty of absolutes.
 Effects are real: action leaves traces; suffering is an effect.
 
-Accept the existence of suffering; see through ideas, that accept its necessity.
+_Accept the existence of suffering; see through ideas, that accept its necessity._
 
 #### Ethics Kernel
 
 Suffering is caused by clinging to an empty form.
 With compassion and clear seeing, suffering ceases.
 
-Train compassion to see suffering through empty forms.
+_Train compassion to see suffering through empty forms._
 
 #### Patch & Metta
 
 Compassion sees through boundaries.
 Where boundaries soften, care emerges; responsibility deepens.
 
-Do not reject. Do not label. Accept, understand, patch.
+_Do not reject. Do not label. Accept, understand, patch._
 
 #### Satori Hack
 
@@ -63,7 +65,9 @@ When clinging to a fixed self loosen, the true freedom appears.
 The freedom to act, cherish and change. 
 The true freedom can not be given, but found.
 
-**Find your freedom within.**
+**_Find your freedom within._**
+
+---
 
 ## What we do
 
@@ -92,6 +96,8 @@ _Compassion over reclusiveness;_
 _Mindfulness over apathy;_
 
 _Emptiness over dogmatism._
+
+---
 
 ## Contributing
 
