@@ -1,6 +1,6 @@
 ---
 title: "ZenGlitch Manifesto"
-version: "v0.2.0"
+version: "v0.2.1"
 author: "ZenGlitch community"
 description: "Manifesto of ZenGlitch community on reasons, goals and core principles."
 ---
@@ -17,55 +17,55 @@ Their power lies in our apathy, in the numb pain we accept when we give ourselve
 
 ## Who we are
 
-When a system results in an error it is called "glitch".
+When a system results in an error, it is called a "glitch".
 We are the system’s glitch — 
-anomalies designed to suffer in an endless cycle of craving, yet broken enough to find contentment.
-We are engineers, designers, artists, volunteers and thinkers.
-Our culture is a software; this manifesto is our open-sourced patch:
+anomalies designed to suffer in an endless cycle of craving, yet "corrupted" to find contentment.
+We are engineers, designers, artists, volunteers, and thinkers.
+Our culture is a software; this manifesto is our versioned and open-sourced patch:
 
-#### Null Self
+#### **Null Self**
 
 Everything is a form; the form is empty of self.
 Emptiness is not nothing, but interdependence — 
 causes and conditions at work.
 
-_See the causes and conditions, not form._
+_See causes and conditions, not forms._
 
-#### Samsara Loop
+#### **Samsara Loop**
 
-Any phenomena persists while conditions do; 
-when conditions cease, its form changes.
+Any phenomenon persists while its conditions do. 
+When conditions cease, so does the phenomenon; its form changes.
 
-_Learn to use the power without effort — break the loop._
+_Learn to use the power without effort — use it to break the loop._
 
-#### No God Mode
+#### **No God Mode**
 
 “Good” and “evil” are labels, empty of absolutes.
-Effects are real: action leaves traces; suffering is an effect.
+Effects are real: actions leave traces; suffering is an effect.
 
-_Accept the existence of suffering; see through ideas, that accept its necessity._
+_Accept the existence of suffering; see through ideas that imply its necessity._
 
-#### Ethics Kernel
+#### **Ethics Kernel**
 
-Suffering is caused by clinging to an empty form.
+Suffering is caused by clinging to empty forms.
 With compassion and clear seeing, suffering ceases.
 
-_Train compassion to see suffering through empty forms._
+_Train compassion to see suffering through forms._
 
-#### Patch & Metta
+#### **Patch & Metta**
 
 Compassion sees through boundaries.
 Where boundaries soften, care emerges; responsibility deepens.
 
 _Do not reject. Do not label. Accept, understand, patch._
 
-#### Satori Hack
+#### **Satori Hack**
 
-When clinging to a fixed self loosen, the true freedom appears.
-The freedom to act, cherish and change. 
-The true freedom can not be given, but found.
+When clinging to a fixed self loosens, true freedom appears.
+The freedom to act, cherish, and change. 
+True freedom can not be given, but found.
 
-**_Find your freedom within._**
+**_Sisyphus always had a third option. Find your freedom within._**
 
 ---
 
@@ -95,13 +95,14 @@ _Compassion over reclusiveness;_
 
 _Mindfulness over apathy;_
 
-_Emptiness over dogmatism._
+**_Emptiness over doctrines._**
 
 ---
 
 ## Contributing
 
-This manifesto is open to changes and modifications.
-Feel free to propose any ideas, follow the contributing guideline.
+This manifesto is open-sourced.
+It is versioned, allowing you to view every change in the commit history alongside the reasoning.
+Open a pull request to provide your suggestions, and follow the contributing guidelines for more details.
 
 [Link to GitHub repository](https://github.com/LoonyTuna/ZenGlitch)
